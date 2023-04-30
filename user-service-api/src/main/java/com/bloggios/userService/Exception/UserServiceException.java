@@ -14,13 +14,24 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Entity;
+package com.bloggios.userService.Exception;
+
+import lombok.*;
+import org.springframework.http.HttpStatus;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Entity
- * @created_on - April 29-2023
+ * @package - com.bloggios.userService.Exception
+ * @created_on - April 30-2023
  */
-public class User {
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserServiceException extends RuntimeException {
+    private String message;
+    private Integer errorCode;
+    private HttpStatus status;
 }

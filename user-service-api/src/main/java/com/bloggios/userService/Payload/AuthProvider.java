@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Service;
+package com.bloggios.userService.Payload;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Service
- * @created_on - April 29-2023
+ * @package - com.bloggios.userService.Payload
+ * @created_on - April 30-2023
  */
-public interface UserService {
+
+public enum AuthProvider {
+    LOCAL,
+    GOOGLE,
+    GITHUB,
+    FACEBOOK
 }

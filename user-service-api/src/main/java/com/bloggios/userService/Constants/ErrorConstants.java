@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Repository;
+package com.bloggios.userService.Constants;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Repository
- * @created_on - April 29-2023
+ * @package - com.bloggios.userService.Constants
+ * @created_on - April 30-2023
  */
-public interface UserRepository {
+
+public class ErrorConstants {
+
+
+    public static final String EMAIL_EXISTS = "Email already exists with that %s. Please try to login";
 }

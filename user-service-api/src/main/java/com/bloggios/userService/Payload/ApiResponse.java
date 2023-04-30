@@ -14,13 +14,21 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Controller;
+package com.bloggios.userService.Payload;
+
+import lombok.*;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Controller
- * @created_on - April 29-2023
+ * @package - com.bloggios.userService.Payload
+ * @created_on - April 30-2023
  */
-public class UserController {
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class ApiResponse {
+    private String message;
 }

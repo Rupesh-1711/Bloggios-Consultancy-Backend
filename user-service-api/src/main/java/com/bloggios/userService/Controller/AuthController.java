@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Implementation;
+package com.bloggios.userService.Controller;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Implementation
+ * @package - com.bloggios.userService.Controller
  * @created_on - April 29-2023
  */
-public class UserImplementation {
+public class AuthController {
 }
