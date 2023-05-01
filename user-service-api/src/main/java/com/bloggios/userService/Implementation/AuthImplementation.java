@@ -73,6 +73,7 @@ public class AuthImplementation implements AuthService {
                 .isEnabled(false)
                 .authProvider(AuthProvider.LOCAL)
                 .build();
+        logger.info("Saving user to MySql database");
         Auth savedAuth = authRepository.save(loadedAuth);
         return ApiResponse
                 .builder()

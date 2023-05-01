@@ -1,0 +1,24 @@
+server:
+  port: ${bloggios.port}
+spring:
+  application:
+    name: ${bloggios.userService.name}
+  datasource:
+    url: ${bloggios.datasource.url}
+    username: ${bloggios.datasource.username}
+    password: ${bloggios.datasource.password}
+    driver-class-name: ${bloggios.datasource.driver-class-name}
+  profiles:
+    active:
+      - development
+  jpa:
+    hibernate:
+      ddl-auto: ${bloggios.jpa.hibernate.ddl-auto}
+    show-sql: ${bloggios.jpa.show-sql}
+logging:
+  level:
+    com.bloggios.userService.Service: debug
+
+application:
+  title: UserService
+  version: @version@
