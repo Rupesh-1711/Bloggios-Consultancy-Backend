@@ -42,7 +42,12 @@ public class AuthController {
 
     private final AuthService authService;
 
-    //curl -X POST http://localhost:7000/auth/register -H "Content-Type:application/json" -d "{\"email\":\"hello@gmail.com\",\"password\":\"helloworld\"}"
+    /**
+     * Curl CMD -> curl -X POST http://localhost:7000/auth/register -H "Content-Type:application/json" -d "{\"email\":\"hello@gmail.com\",\"password\":\"helloworld\"}"
+     * Curl Powershell -> curl.exe -X POST http://localhost:7000/auth/register -H 'Content-Type:application/json' -d '{\"email\":\"hello@gmail.com\",\"password\":\"helloworld\"}'
+     * @param authRequest
+     * @return
+     */
     @PostMapping(value = "/register")
     public ResponseEntity<ApiResponse> registerUser(@RequestBody AuthRequest authRequest){
         logger.info("Entry");
