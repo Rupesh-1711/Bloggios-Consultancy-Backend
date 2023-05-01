@@ -1,4 +1,4 @@
-<h1 align="center"><img alt="downloads" src="https://img.shields.io/badge/-BLOGGIOS_LEARN-0088CC" height=70 target="_blank" /></br>
+<h1 align="center"><a href="https://www.github.com/beingrohit25/Bloggios-Learning-Platform-Backend"><img alt="downloads" src="https://img.shields.io/badge/-BLOGGIOS_LEARN-0088CC" height=70 target="_blank" /></a></br>
 <a href="https://www.github.com/beingrohit25/Bloggios-Learning-Platform-Backend">
     <img alt="downloads" src="https://img.shields.io/badge/-v1.0-lightblue" height=40 target="_blank" />
   </a>
