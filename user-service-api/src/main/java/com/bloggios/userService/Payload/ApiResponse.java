@@ -16,6 +16,7 @@
 
 package com.bloggios.userService.Payload;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 /**
@@ -29,6 +30,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse {
     private String message;
+    private Integer errorCode;
 }
