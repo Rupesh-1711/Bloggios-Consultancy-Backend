@@ -16,11 +16,9 @@
 
 package com.bloggios.userService.Implementation;
 
-import com.bloggios.userService.Constants.ErrorCodes;
-import com.bloggios.userService.Constants.ErrorConstants;
+import com.bloggios.userService.BusinessLogic.DatabaseLogic;
 import com.bloggios.userService.Constants.ServiceConstants;
 import com.bloggios.userService.Entity.Auth;
-import com.bloggios.userService.Exception.UserServiceException;
 import com.bloggios.userService.Payload.ApiResponse;
 import com.bloggios.userService.Payload.AuthProvider;
 import com.bloggios.userService.Payload.AuthRequest;
@@ -29,7 +27,6 @@ import com.bloggios.userService.Service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -49,6 +46,7 @@ public class AuthImplementation implements AuthService {
     private static final Logger logger = LoggerFactory.getLogger(AuthImplementation.class);
 
     private final AuthRepository authRepository;
+    private final DatabaseLogic databaseLogic;
 
     /**
      * Registering new Local user to Bloggios Learn
@@ -57,13 +55,7 @@ public class AuthImplementation implements AuthService {
      */
     @Override
     public ApiResponse registerUser(AuthRequest authRequest) {
-        if (authRepository.existsByEmail(authRequest.getEmail())){
-            throw new UserServiceException(
-                    ErrorConstants.EMAIL_EXISTS,
-                    ErrorCodes.DUPLICATE_ENTRY,
-                    HttpStatus.CONFLICT
-            );
-        }
+        databaseLogic.checkEmailIfExists(authRequest);
         Auth loadedAuth = Auth
                 .builder()
                 .email(authRequest.getEmail())

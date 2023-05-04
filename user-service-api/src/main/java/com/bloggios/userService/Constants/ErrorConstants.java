@@ -24,7 +24,5 @@ package com.bloggios.userService.Constants;
  */
 
 public class ErrorConstants {
-
-
-    public static final String EMAIL_EXISTS = "Email already exists with that %s. Please try to login";
+    public static final String EMAIL_EXISTS = "Email already exists with that Email. Please try to login";
 }
