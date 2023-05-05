@@ -4,8 +4,8 @@ bloggios:
     name: UserService-development
   datasource:
     url: jdbc:mysql://localhost:3306/bloggios_learn
-    username: root
-    password: root
+    username: ${DatabaseUser}
+    password: ${DatabasePassword}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

@@ -36,6 +36,7 @@
     <modules>
         <module>user-service-api</module>
         <module>auth-server-api</module>
+        <module>mail-service</module>
     </modules>
 
     <properties>

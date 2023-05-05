@@ -1,0 +1,23 @@
+server:
+  port: 7007
+spring:
+  application:
+    name: Mail-Service
+  mail:
+    username: ${mail.username}
+    password: ${mail.password}
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  profiles:
+    active: development
+
+application:
+  version: @version@
+  title: Email Service
