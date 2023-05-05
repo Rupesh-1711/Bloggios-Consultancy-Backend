@@ -30,6 +30,8 @@
     Server Port -> 7000
     Database -> MySql
     Databse Port -> 3306
+    Database User -> Your mysql database Username
+    Database Password -> Your mysql database Password
     Database Name -> bloggios_learn
 
 ### Register a User [POST]
