@@ -44,7 +44,7 @@ public class MailService {
         Context context = new Context();
         Auth auth = new Auth("rohitparih@gmail.com", "768657");
         context.setVariable("auth", auth);
-        String process = templateEngine.process("Email/welcome", context);
+        String process = templateEngine.process("Email/RegisterMail", context);
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
         helper.setSubject("Welcome to Bloggios-Learn Platform");
