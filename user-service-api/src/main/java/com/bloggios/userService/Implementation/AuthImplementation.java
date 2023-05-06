@@ -17,6 +17,7 @@
 package com.bloggios.userService.Implementation;
 
 import com.bloggios.userService.BusinessLogic.DatabaseLogic;
+import com.bloggios.userService.BusinessLogic.PostRegistration;
 import com.bloggios.userService.Constants.ServiceConstants;
 import com.bloggios.userService.Entity.Auth;
 import com.bloggios.userService.Payload.ApiResponse;
@@ -27,6 +28,7 @@ import com.bloggios.userService.Service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -47,6 +49,7 @@ public class AuthImplementation implements AuthService {
 
     private final AuthRepository authRepository;
     private final DatabaseLogic databaseLogic;
+    private final PostRegistration postRegistration;
 
     /**
      * Registering new Local user to Bloggios Learn
@@ -67,6 +70,7 @@ public class AuthImplementation implements AuthService {
                 .build();
         logger.info("Saving user to MySql database");
         Auth savedAuth = authRepository.save(loadedAuth);
+        postRegistration.registrationDone(savedAuth);
         return ApiResponse
                 .builder()
                 .message(ServiceConstants.REGISTERED)
