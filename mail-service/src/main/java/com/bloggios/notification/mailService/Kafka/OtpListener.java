@@ -14,25 +14,36 @@
  * limitations under the License.
  */
 
-package com.bloggios.notification.mailService.Controller;
+package com.bloggios.notification.mailService.Kafka;
 
-import com.bloggios.notification.mailService.MailServiceApplication;
+import com.bloggios.notification.mailService.Payload.PostRegistrationOtpPayload;
 import com.bloggios.notification.mailService.Service.MailService;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.notification.mailService.Controller
- * @created_on - May 05-2023
+ * @package - com.bloggios.notification.mailService.Kafka
+ * @created_on - May 07-2023
  */
 
-@RestController
+@Component
 @RequiredArgsConstructor
-public class MailController {
+@Slf4j
+public class OtpListener {
 
     private final MailService mailService;
+
+    @KafkaListener(topics = "otpMessage")
+    public void getOtpListnerPayload(PostRegistrationOtpPayload postRegistrationOtpPayload) throws MessagingException {
+        log.warn("Inside KafkaListener");
+        log.warn("Otp is : " + postRegistrationOtpPayload.getOtp());
+        mailService.sendMail(postRegistrationOtpPayload);
+        log.warn("Mail Sent");
+    }
 }

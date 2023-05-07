@@ -19,11 +19,13 @@ package com.bloggios.userService.Listener;
 import com.bloggios.userService.BusinessLogic.OTPGenerator;
 import com.bloggios.userService.Entity.Auth;
 import com.bloggios.userService.Events.RegistrationEvent;
+import com.bloggios.userService.Payload.PostRegistrationOtpPayload;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.EventListener;
@@ -41,6 +43,7 @@ import java.util.EventListener;
 public class RegistrationListener implements ApplicationListener<RegistrationEvent> {
 
     private final OTPGenerator otpGenerator;
+    private final KafkaTemplate<String, PostRegistrationOtpPayload> kafkaTemplate;
 
     @Override
     public void onApplicationEvent(RegistrationEvent event) {
@@ -48,5 +51,6 @@ public class RegistrationListener implements ApplicationListener<RegistrationEve
         log.info(auth.getEmail());
         String generatedOtp = otpGenerator.generateOtp.get();
         log.warn(generatedOtp);
+        kafkaTemplate.send("otpMessage", new PostRegistrationOtpPayload(auth.getEmail(), generatedOtp));
     }
 }

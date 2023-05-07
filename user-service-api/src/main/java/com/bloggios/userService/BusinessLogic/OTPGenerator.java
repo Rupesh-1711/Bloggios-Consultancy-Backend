@@ -36,10 +36,11 @@ public class OTPGenerator {
 
     }
 
-    StringBuilder string = new StringBuilder();
-    SecureRandom secureRandom = new SecureRandom();
+
 
     public Supplier<String> generateOtp = () -> {
+        StringBuilder string = new StringBuilder();
+        SecureRandom secureRandom = new SecureRandom();
         for (int i=0 ; i<6 ; i++){
             string.append(secureRandom.nextInt(9));
         }

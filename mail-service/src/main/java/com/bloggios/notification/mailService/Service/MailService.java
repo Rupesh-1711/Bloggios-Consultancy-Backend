@@ -17,6 +17,7 @@
 package com.bloggios.notification.mailService.Service;
 
 import com.bloggios.notification.mailService.Modal.Auth;
+import com.bloggios.notification.mailService.Payload.PostRegistrationOtpPayload;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -40,16 +41,15 @@ public class MailService {
     private final TemplateEngine templateEngine;
     private final JavaMailSender javaMailSender;
 
-    public void sendMail() throws MessagingException {
+    public void sendMail(PostRegistrationOtpPayload postRegistrationOtpPayload) throws MessagingException {
         Context context = new Context();
-        Auth auth = new Auth("rohitparih@gmail.com", "768657");
-        context.setVariable("auth", auth);
+        context.setVariable("otpPayload", postRegistrationOtpPayload);
         String process = templateEngine.process("Email/RegisterMail", context);
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
         helper.setSubject("Welcome to Bloggios-Learn Platform");
         helper.setText(process, true);
-        helper.setTo(auth.getEmail());
+        helper.setTo(postRegistrationOtpPayload.getEmail());
         javaMailSender.send(mimeMessage);
     }
 }

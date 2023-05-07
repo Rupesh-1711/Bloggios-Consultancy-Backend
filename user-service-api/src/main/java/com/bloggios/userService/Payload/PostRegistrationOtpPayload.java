@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-package com.bloggios.notification.mailService.Controller;
+package com.bloggios.userService.Payload;
 
-import com.bloggios.notification.mailService.MailServiceApplication;
-import com.bloggios.notification.mailService.Service.MailService;
-import jakarta.mail.MessagingException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.notification.mailService.Controller
- * @created_on - May 05-2023
+ * @package - com.bloggios.userService.Payload
+ * @created_on - May 07-2023
  */
 
-@RestController
-@RequiredArgsConstructor
-public class MailController {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class PostRegistrationOtpPayload {
 
-    private final MailService mailService;
+    private String email;
+    private String otp;
 }
