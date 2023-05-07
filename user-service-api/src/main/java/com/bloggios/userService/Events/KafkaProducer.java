@@ -14,19 +14,28 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Repository;
+package com.bloggios.userService.Events;
 
-import com.bloggios.userService.Entity.Auth;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.UUID;
+import com.bloggios.userService.BusinessLogic.PostRegistration;
+import com.bloggios.userService.Payload.PostRegistrationOtpPayload;
+import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Repository
- * @created_on - April 29-2023
+ * @package - com.bloggios.userService.Events
+ * @created_on - May 08-2023
  */
-public interface AuthRepository extends JpaRepository<Auth, String> {
-    Boolean existsByEmail(String email);
+
+@RequiredArgsConstructor
+@Service
+public class KafkaProducer {
+
+    private final KafkaTemplate<String, PostRegistrationOtpPayload> kafkaTemplate;
+
+    public void produceOtp(String email, String otp){
+        kafkaTemplate.send("otpMessage", new PostRegistrationOtpPayload(email, otp));
+    }
 }

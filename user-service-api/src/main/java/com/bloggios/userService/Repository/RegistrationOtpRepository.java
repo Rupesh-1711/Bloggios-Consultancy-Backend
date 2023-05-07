@@ -16,17 +16,15 @@
 
 package com.bloggios.userService.Repository;
 
-import com.bloggios.userService.Entity.Auth;
+import com.bloggios.userService.Entity.RegistrationOtp;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.UUID;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
  * @package - com.bloggios.userService.Repository
- * @created_on - April 29-2023
+ * @created_on - May 08-2023
  */
-public interface AuthRepository extends JpaRepository<Auth, String> {
-    Boolean existsByEmail(String email);
+
+public interface RegistrationOtpRepository extends JpaRepository<RegistrationOtp, String> {
 }

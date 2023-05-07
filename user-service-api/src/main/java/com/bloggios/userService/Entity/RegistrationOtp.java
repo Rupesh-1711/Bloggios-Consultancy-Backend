@@ -16,43 +16,41 @@
 
 package com.bloggios.userService.Entity;
 
-import com.bloggios.userService.Payload.AuthProvider;
+import com.bloggios.userService.Constants.GeneralConstants;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
  * @package - com.bloggios.userService.Entity
- * @created_on - April 29-2023
+ * @created_on - May 07-2023
  */
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class Auth {
+public class RegistrationOtp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String authId;
+    private String otpId;
+    private String otp;
 
-    @Column(unique = true, nullable = false, length = 50)
-    private String email;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Auth auth;
+    private Date dateGenerated;
+    private Date expiry;
 
-    @Column(nullable = false, length = 100)
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    private AuthProvider authProvider;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateRegistered;
-    private Boolean emailVerified;
-    private Boolean isEnabled;
+    public RegistrationOtp(String otpId, String otp, Auth auth, Date dateGenerated, Date expiry){
+        this.otpId = otpId;
+        this.otp = otp;
+        this.auth = auth;
+        this.dateGenerated = new Date(System.currentTimeMillis());
+        this.expiry = new Date(System.currentTimeMillis() + GeneralConstants.MINUTES_7);
+    }
 }

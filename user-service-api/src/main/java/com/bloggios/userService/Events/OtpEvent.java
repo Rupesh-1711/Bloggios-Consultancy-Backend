@@ -14,19 +14,34 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Repository;
+package com.bloggios.userService.Events;
 
 import com.bloggios.userService.Entity.Auth;
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.context.ApplicationEvent;
 
-import java.util.UUID;
+import java.time.Clock;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Repository
- * @created_on - April 29-2023
+ * @package - com.bloggios.userService.Events
+ * @created_on - May 07-2023
  */
-public interface AuthRepository extends JpaRepository<Auth, String> {
-    Boolean existsByEmail(String email);
+
+@Getter
+@Setter
+public class OtpEvent extends ApplicationEvent {
+
+    private Auth auth;
+    private String otp;
+
+    public OtpEvent(Auth auth, String otp) {
+        super(auth);
+        this.auth = auth;
+        this.otp = otp;
+    }
 }

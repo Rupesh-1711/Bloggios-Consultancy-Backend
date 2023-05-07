@@ -16,10 +16,14 @@
 
 package com.bloggios.userService.BusinessLogic;
 
+import com.bloggios.userService.Entity.Auth;
+import com.bloggios.userService.Entity.RegistrationOtp;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.function.Supplier;
 
 /**
@@ -36,8 +40,6 @@ public class OTPGenerator {
 
     }
 
-
-
     public Supplier<String> generateOtp = () -> {
         StringBuilder string = new StringBuilder();
         SecureRandom secureRandom = new SecureRandom();
@@ -46,4 +48,12 @@ public class OTPGenerator {
         }
         return string.toString();
     };
+
+    public RegistrationOtp otpSupplier(Auth auth){
+        return RegistrationOtp
+                .builder()
+                .auth(auth)
+                .otp(generateOtp.get())
+                .build();
+    }
 }

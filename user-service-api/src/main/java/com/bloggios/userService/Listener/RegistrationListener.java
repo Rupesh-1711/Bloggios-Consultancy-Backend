@@ -47,10 +47,6 @@ public class RegistrationListener implements ApplicationListener<RegistrationEve
 
     @Override
     public void onApplicationEvent(RegistrationEvent event) {
-        Auth auth = event.getAuth();
-        log.info(auth.getEmail());
-        String generatedOtp = otpGenerator.generateOtp.get();
-        log.warn(generatedOtp);
-        kafkaTemplate.send("otpMessage", new PostRegistrationOtpPayload(auth.getEmail(), generatedOtp));
+
     }
 }
