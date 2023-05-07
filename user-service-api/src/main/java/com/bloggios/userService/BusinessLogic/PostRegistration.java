@@ -19,15 +19,11 @@ package com.bloggios.userService.BusinessLogic;
 import com.bloggios.userService.Entity.Auth;
 import com.bloggios.userService.Entity.RegistrationOtp;
 import com.bloggios.userService.Events.KafkaProducer;
-import com.bloggios.userService.Events.RegistrationEvent;
-import com.bloggios.userService.Payload.PostRegistrationOtpPayload;
 import com.bloggios.userService.Repository.RegistrationOtpRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 

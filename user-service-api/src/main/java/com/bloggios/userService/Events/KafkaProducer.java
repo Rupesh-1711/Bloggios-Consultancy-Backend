@@ -16,8 +16,7 @@
 
 package com.bloggios.userService.Events;
 
-import com.bloggios.userService.BusinessLogic.PostRegistration;
-import com.bloggios.userService.Payload.PostRegistrationOtpPayload;
+import com.bloggios.userService.Payload.OtpPayload;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -33,9 +32,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaProducer {
 
-    private final KafkaTemplate<String, PostRegistrationOtpPayload> kafkaTemplate;
+    private final KafkaTemplate<String, OtpPayload> kafkaTemplate;
 
     public void produceOtp(String email, String otp){
-        kafkaTemplate.send("otpMessage", new PostRegistrationOtpPayload(email, otp));
+        kafkaTemplate.send("otpMessage", new OtpPayload(email, otp));
     }
 }

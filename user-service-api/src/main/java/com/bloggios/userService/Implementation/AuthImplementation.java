@@ -23,7 +23,9 @@ import com.bloggios.userService.Entity.Auth;
 import com.bloggios.userService.Payload.ApiResponse;
 import com.bloggios.userService.Payload.AuthProvider;
 import com.bloggios.userService.Payload.AuthRequest;
+import com.bloggios.userService.Payload.OtpPayload;
 import com.bloggios.userService.Repository.AuthRepository;
+import com.bloggios.userService.Repository.RegistrationOtpRepository;
 import com.bloggios.userService.Service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -50,6 +52,7 @@ public class AuthImplementation implements AuthService {
     private final AuthRepository authRepository;
     private final DatabaseLogic databaseLogic;
     private final PostRegistration postRegistration;
+    private final RegistrationOtpRepository registrationOtpRepository;
 
     /**
      * Registering new Local user to Bloggios Learn
@@ -75,5 +78,10 @@ public class AuthImplementation implements AuthService {
                 .builder()
                 .message(ServiceConstants.REGISTERED)
                 .build();
+    }
+
+    @Override
+    public ApiResponse verifyOtp(OtpPayload otpPayload) {
+        return null;
     }
 }
