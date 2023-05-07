@@ -14,19 +14,16 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Repository;
-
-import com.bloggios.userService.Entity.Auth;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.UUID;
+package com.bloggios.userService.Constants;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Repository
- * @created_on - April 29-2023
+ * @package - com.bloggios.userService.Constants
+ * @created_on - May 08-2023
  */
-public interface AuthRepository extends JpaRepository<Auth, String> {
-    Boolean existsByEmail(String email);
+
+public class GeneralConstants {
+
+    public static final Integer MINUTES_7 = 1000 * 60*7;
 }

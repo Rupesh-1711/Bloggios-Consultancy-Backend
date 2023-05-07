@@ -17,12 +17,18 @@
 package com.bloggios.userService.BusinessLogic;
 
 import com.bloggios.userService.Entity.Auth;
+import com.bloggios.userService.Entity.RegistrationOtp;
+import com.bloggios.userService.Events.KafkaProducer;
 import com.bloggios.userService.Events.RegistrationEvent;
+import com.bloggios.userService.Payload.PostRegistrationOtpPayload;
+import com.bloggios.userService.Repository.RegistrationOtpRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -38,12 +44,16 @@ public class PostRegistration {
 
     private static final Logger logger = LoggerFactory.getLogger(PostRegistration.class);
 
-    @Autowired
-    private ApplicationEventPublisher applicationEventPublisher;
+    private final ApplicationEventPublisher applicationEventPublisher;
+    private final OTPGenerator otpGenerator;
+    private final KafkaProducer kafkaProducer;
+    private final RegistrationOtpRepository registrationOtpRepository;
 
+    @Async
     public void registrationDone(Auth auth){
-        logger.info("In Event");
-        logger.info(auth.getEmail());
-        applicationEventPublisher.publishEvent(new RegistrationEvent(auth));
+        RegistrationOtp registrationOtp = otpGenerator.otpSupplier(auth);
+        kafkaProducer.produceOtp(auth.getEmail(), registrationOtp.getOtp());
+//        applicationEventPublisher.publishEvent(new RegistrationEvent(auth));
+        registrationOtpRepository.save(registrationOtp);
     }
 }
