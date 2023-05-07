@@ -19,6 +19,7 @@ package com.bloggios.userService.Service;
 import com.bloggios.userService.Entity.Auth;
 import com.bloggios.userService.Payload.ApiResponse;
 import com.bloggios.userService.Payload.AuthRequest;
+import com.bloggios.userService.Payload.OtpPayload;
 
 /**
  * @author - rohit
@@ -30,4 +31,5 @@ import com.bloggios.userService.Payload.AuthRequest;
 public interface AuthService {
 
     ApiResponse registerUser(AuthRequest authRequest);
+    ApiResponse verifyOtp(OtpPayload otpPayload);
 }

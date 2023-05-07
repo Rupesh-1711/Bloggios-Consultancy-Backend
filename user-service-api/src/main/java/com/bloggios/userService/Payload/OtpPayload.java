@@ -32,7 +32,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostRegistrationOtpPayload {
+public class OtpPayload {
 
     private String email;
     private String otp;
