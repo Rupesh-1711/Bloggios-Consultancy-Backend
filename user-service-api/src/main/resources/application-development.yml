@@ -15,3 +15,5 @@ bloggios:
 logging:
   level:
     com.bloggios.userService.Service: debug
+
+bootstrap-servers: localhost:9092

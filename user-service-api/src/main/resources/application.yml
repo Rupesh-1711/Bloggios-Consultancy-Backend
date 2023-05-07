@@ -15,6 +15,13 @@ spring:
     hibernate:
       ddl-auto: ${bloggios.jpa.hibernate.ddl-auto}
     show-sql: ${bloggios.jpa.show-sql}
+  kafka:
+    bootstrap-servers: ${bootstrap-servers}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: event:com.bloggios.userService.Payload.PostRegistrationOtpPayload
 logging:
   level:
     com.bloggios.userService.Service: debug
