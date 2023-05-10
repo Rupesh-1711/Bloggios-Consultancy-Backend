@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Repository;
+package com.bloggios.cloud.gateway;
 
-import com.bloggios.userService.Entity.Auth;
-import com.bloggios.userService.Entity.RegistrationOtp;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Repository
- * @created_on - May 08-2023
+ * @package - com.bloggios.cloud.gateway
+ * @created_on - May 10-2023
  */
 
-public interface RegistrationOtpRepository extends JpaRepository<RegistrationOtp, String> {
-    Optional<RegistrationOtp> findByOtp(String otp);
+@SpringBootApplication
+public class ApiGatewayApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ApiGatewayApplication.class, args);
+    }
 }

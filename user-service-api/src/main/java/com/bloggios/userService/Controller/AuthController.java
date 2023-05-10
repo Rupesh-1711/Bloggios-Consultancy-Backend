@@ -18,13 +18,16 @@ package com.bloggios.userService.Controller;
 
 import com.bloggios.userService.Payload.ApiResponse;
 import com.bloggios.userService.Payload.AuthRequest;
+import com.bloggios.userService.Payload.OtpPayload;
 import com.bloggios.userService.Service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 /**
  * @author - rohit
@@ -52,11 +55,18 @@ public class AuthController {
     public ResponseEntity<ApiResponse> registerUser(@RequestBody AuthRequest authRequest){
         logger.info("Entry");
         ApiResponse apiResponse = authService.registerUser(authRequest);
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/auth/otp")
+                .queryParam("email", authRequest.getEmail())
+                .build()
+                .toUri();
+        return ResponseEntity.created(uri).body(apiResponse);
     }
 
-    @GetMapping("/register")
-    public ResponseEntity<String> response(){
-        return ResponseEntity.ok("Got Data");
+    @PostMapping("/otp")
+    public ResponseEntity<ApiResponse> otpVerify(@RequestParam(value = "email", required = true) String email, @RequestBody String otp){
+        ApiResponse apiResponse = authService.verifyOtp(new OtpPayload(email, otp));
+        return ResponseEntity.ok(apiResponse);
     }
 }

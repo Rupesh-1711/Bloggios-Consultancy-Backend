@@ -19,6 +19,7 @@ package com.bloggios.userService.Repository;
 import com.bloggios.userService.Entity.Auth;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**

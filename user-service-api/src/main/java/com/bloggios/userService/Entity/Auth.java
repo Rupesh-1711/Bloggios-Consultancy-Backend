@@ -21,7 +21,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 /**
  * @author - rohit
@@ -55,4 +55,7 @@ public class Auth {
     private Date dateRegistered;
     private Boolean emailVerified;
     private Boolean isEnabled;
+
+    @OneToMany(mappedBy = "auth", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<RegistrationOtp> otps;
 }
