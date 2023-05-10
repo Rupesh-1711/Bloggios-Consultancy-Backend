@@ -14,21 +14,23 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Repository;
+package com.bloggios.cloud.discoveryServer;
 
-import com.bloggios.userService.Entity.Auth;
-import com.bloggios.userService.Entity.RegistrationOtp;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Repository
- * @created_on - May 08-2023
+ * @package - com.bloggios.cloud.discoveryServer
+ * @created_on - May 10-2023
  */
 
-public interface RegistrationOtpRepository extends JpaRepository<RegistrationOtp, String> {
-    Optional<RegistrationOtp> findByOtp(String otp);
+@SpringBootApplication
+@EnableEurekaServer
+public class DiscoveryServerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DiscoveryServerApplication.class, args);
+    }
 }

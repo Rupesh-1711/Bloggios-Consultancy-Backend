@@ -25,4 +25,6 @@ package com.bloggios.userService.Constants;
 
 public class ServiceConstants {
     public static final String REGISTERED = "User Registered Successfully to Bloggios. Please verify your email";
+    public static final String INVALID_OTP = "OTP is not valid. Please use OTP sent on your email";
+    public static final String EMAIL_VERIFIED = "Email verified successfully Bloggios";
 }

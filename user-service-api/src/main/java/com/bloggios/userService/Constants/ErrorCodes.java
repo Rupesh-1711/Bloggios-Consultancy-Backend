@@ -27,4 +27,6 @@ public class ErrorCodes {
 
     //Exception thrown because of Duplicate Entry of for fields defined to be unique
     public static final Integer DUPLICATE_ENTRY = 1007;
+    public static final Integer INVALID_ENTRY = 1008;
+    public static final Integer EXPIRED_ENTRY = 1010;
 }

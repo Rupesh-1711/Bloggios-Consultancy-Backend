@@ -21,7 +21,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.type.mapping: event:com.bloggios.userService.Payload.PostRegistrationOtpPayload
+        spring.json.type.mapping: event:com.bloggios.userService.Payload.OtpPayload
 logging:
   level:
     com.bloggios.userService.Service: debug

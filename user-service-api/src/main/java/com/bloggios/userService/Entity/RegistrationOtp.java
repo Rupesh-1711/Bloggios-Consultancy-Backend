@@ -41,7 +41,7 @@ public class RegistrationOtp {
     private String otpId;
     private String otp;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     private Auth auth;
     private Date dateGenerated;
     private Date expiry;

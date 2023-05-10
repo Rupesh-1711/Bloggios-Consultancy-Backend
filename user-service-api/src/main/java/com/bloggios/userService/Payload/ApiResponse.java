@@ -19,6 +19,8 @@ package com.bloggios.userService.Payload;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
+import java.net.URI;
+
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
@@ -34,4 +36,8 @@ import lombok.*;
 public class ApiResponse {
     private String message;
     private Integer errorCode;
+
+    public ApiResponse(String message) {
+        this.message = message;
+    }
 }

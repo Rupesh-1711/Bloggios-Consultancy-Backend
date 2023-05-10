@@ -18,8 +18,11 @@ package com.bloggios.userService.Implementation;
 
 import com.bloggios.userService.BusinessLogic.DatabaseLogic;
 import com.bloggios.userService.BusinessLogic.PostRegistration;
+import com.bloggios.userService.Constants.ErrorCodes;
 import com.bloggios.userService.Constants.ServiceConstants;
 import com.bloggios.userService.Entity.Auth;
+import com.bloggios.userService.Entity.RegistrationOtp;
+import com.bloggios.userService.Exception.UserServiceException;
 import com.bloggios.userService.Payload.ApiResponse;
 import com.bloggios.userService.Payload.AuthProvider;
 import com.bloggios.userService.Payload.AuthRequest;
@@ -27,10 +30,10 @@ import com.bloggios.userService.Payload.OtpPayload;
 import com.bloggios.userService.Repository.AuthRepository;
 import com.bloggios.userService.Repository.RegistrationOtpRepository;
 import com.bloggios.userService.Service.AuthService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationEventPublisher;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -45,9 +48,8 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthImplementation implements AuthService {
-
-    private static final Logger logger = LoggerFactory.getLogger(AuthImplementation.class);
 
     private final AuthRepository authRepository;
     private final DatabaseLogic databaseLogic;
@@ -71,7 +73,7 @@ public class AuthImplementation implements AuthService {
                 .isEnabled(false)
                 .authProvider(AuthProvider.LOCAL)
                 .build();
-        logger.info("Saving user to MySql database");
+        log.info("Saving user to MySql database");
         Auth savedAuth = authRepository.save(loadedAuth);
         postRegistration.registrationDone(savedAuth);
         return ApiResponse
@@ -80,8 +82,27 @@ public class AuthImplementation implements AuthService {
                 .build();
     }
 
+    /**
+     *
+     * Verify otp of user
+     * @param otpPayload
+     * @return
+     */
     @Override
+    @Transactional
     public ApiResponse verifyOtp(OtpPayload otpPayload) {
-        return null;
+        RegistrationOtp userOtp = registrationOtpRepository.findByOtp(otpPayload.getOtp())
+                .orElseThrow(() -> new UserServiceException(ServiceConstants.INVALID_OTP, ErrorCodes.INVALID_ENTRY, HttpStatus.BAD_REQUEST));
+        Auth auth = userOtp.getAuth();
+        if (!auth.getEmail().equals(otpPayload.getEmail()))
+            throw new UserServiceException("Not Authorized", ErrorCodes.INVALID_ENTRY, HttpStatus.BAD_REQUEST);
+        if (userOtp.getExpiry().before(new Date(System.currentTimeMillis()))){
+            throw new UserServiceException("OTP is Expired please generate new OTP", ErrorCodes.EXPIRED_ENTRY, HttpStatus.NOT_ACCEPTABLE);
+        }
+        auth.setIsEnabled(true);
+        auth.setEmailVerified(true);
+        authRepository.save(auth);
+        registrationOtpRepository.delete(userOtp);
+        return new ApiResponse(ServiceConstants.EMAIL_VERIFIED);
     }
 }
