@@ -64,6 +64,13 @@ public class AuthController {
         return ResponseEntity.created(uri).body(apiResponse);
     }
 
+    /**
+     *
+     * Verification of OTP with given Email
+     * @param email
+     * @param otp
+     * @return
+     */
     @PostMapping("/otp")
     public ResponseEntity<ApiResponse> otpVerify(@RequestParam(value = "email", required = true) String email, @RequestBody String otp){
         ApiResponse apiResponse = authService.verifyOtp(new OtpPayload(email, otp));

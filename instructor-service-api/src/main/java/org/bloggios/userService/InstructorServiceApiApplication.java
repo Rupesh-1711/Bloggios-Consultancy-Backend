@@ -14,23 +14,21 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Service;
+package org.bloggios.userService;
 
-import com.bloggios.userService.Entity.Auth;
-import com.bloggios.userService.Payload.ApiResponse;
-import com.bloggios.userService.Payload.AuthRequest;
-import com.bloggios.userService.Payload.OtpPayload;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Service
- * @created_on - April 29-2023
+ * @package - org.bloggios.userService
+ * @created_on - June 03-2023
  */
 
-public interface AuthService {
-
-    ApiResponse registerUser(AuthRequest authRequest);
-    ApiResponse verifyOtp(OtpPayload otpPayload);
-
+@SpringBootApplication
+public class InstructorServiceApiApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(InstructorServiceApiApplication.class, args);
+    }
 }
