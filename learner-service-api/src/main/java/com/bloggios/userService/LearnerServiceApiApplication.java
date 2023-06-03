@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.bloggios.userService;
+package com.bloggios.userService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,8 +27,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class InstructorServiceApiApplication {
+public class LearnerServiceApiApplication {
     public static void main(String[] args) {
-        SpringApplication.run(InstructorServiceApiApplication.class, args);
+        SpringApplication.run(LearnerServiceApiApplication.class, args);
     }
 }
