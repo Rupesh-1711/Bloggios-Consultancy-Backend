@@ -32,5 +32,5 @@ public interface AuthService {
 
     ApiResponse registerUser(AuthRequest authRequest);
     ApiResponse verifyOtp(OtpPayload otpPayload);
-
+    ApiResponse resendOtp(String userId);
 }

@@ -72,8 +72,20 @@ public class AuthController {
      * @return
      */
     @PostMapping("/otp")
-    public ResponseEntity<ApiResponse> otpVerify(@RequestParam(value = "email", required = true) String email, @RequestBody String otp){
+    public ResponseEntity<ApiResponse> otpVerify(@RequestParam(value = "email") String email, @RequestBody String otp){
         ApiResponse apiResponse = authService.verifyOtp(new OtpPayload(email, otp));
+        return ResponseEntity.ok(apiResponse);
+    }
+
+    /**
+     *
+     * Resend otp to registered user
+     * @param userid
+     * @return
+     */
+    @GetMapping("/resend-otp")
+    public ResponseEntity<ApiResponse> resendOtp(@RequestParam(value = "userid") String userid){
+        ApiResponse apiResponse = authService.resendOtp(userid);
         return ResponseEntity.ok(apiResponse);
     }
 }

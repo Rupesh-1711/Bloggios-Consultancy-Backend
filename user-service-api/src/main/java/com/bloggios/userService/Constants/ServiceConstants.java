@@ -27,4 +27,7 @@ public class ServiceConstants {
     public static final String REGISTERED = "User Registered Successfully to Bloggios. Please verify your email";
     public static final String INVALID_OTP = "OTP is not valid. Please use OTP sent on your email";
     public static final String EMAIL_VERIFIED = "Email verified successfully Bloggios";
+    public static final String USER_NOT_EXISTS = "User not found with given id";
+    public static final String OTP_NOT_FOUND = "OTP not found for given user";
+    public static final String EMAIL_ALREADY_VERIFIED = "Email is already verified";
 }
