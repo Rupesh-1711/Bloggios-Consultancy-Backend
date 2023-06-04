@@ -19,6 +19,7 @@ package com.bloggios.userService.Implementation;
 import com.bloggios.userService.BusinessLogic.DatabaseLogic;
 import com.bloggios.userService.BusinessLogic.PostRegistration;
 import com.bloggios.userService.Constants.ErrorCodes;
+import com.bloggios.userService.Constants.ErrorConstants;
 import com.bloggios.userService.Constants.ServiceConstants;
 import com.bloggios.userService.Entity.Auth;
 import com.bloggios.userService.Entity.RegistrationOtp;
@@ -104,5 +105,23 @@ public class AuthImplementation implements AuthService {
         authRepository.save(auth);
         registrationOtpRepository.delete(userOtp);
         return new ApiResponse(ServiceConstants.EMAIL_VERIFIED);
+    }
+
+    @Override
+    @Transactional
+    public ApiResponse resendOtp(String userId) {
+        RegistrationOtp registrationOtp = registrationOtpRepository.findByAuth_AuthId(userId)
+                .orElseThrow(() -> new UserServiceException(ServiceConstants.OTP_NOT_FOUND, ErrorCodes.NOT_FOUND, HttpStatus.NOT_FOUND));
+        Auth auth = authRepository.findById(userId).get();
+        if (auth.getEmailVerified())
+            throw new UserServiceException(ServiceConstants.EMAIL_ALREADY_VERIFIED, ErrorCodes.DUPLICATE_ENTRY, HttpStatus.ALREADY_REPORTED);
+        if (auth.getIsEnabled())
+            throw new UserServiceException(ErrorConstants.NOT_ENABLED, ErrorCodes.BLOCKED_ENTRY, HttpStatus.FORBIDDEN);
+        registrationOtpRepository.delete(registrationOtp);
+        postRegistration.registrationDone(auth);
+        return ApiResponse
+                .builder()
+                .message("OTP sent successfully to your registered mail address")
+                .build();
     }
 }

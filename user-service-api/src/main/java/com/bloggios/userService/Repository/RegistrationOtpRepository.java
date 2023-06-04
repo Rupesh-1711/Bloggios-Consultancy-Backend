@@ -31,4 +31,5 @@ import java.util.Optional;
 
 public interface RegistrationOtpRepository extends JpaRepository<RegistrationOtp, String> {
     Optional<RegistrationOtp> findByOtp(String otp);
+    Optional<RegistrationOtp> findByAuth_AuthId(String authId);
 }

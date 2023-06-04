@@ -29,4 +29,6 @@ public class ErrorCodes {
     public static final Integer DUPLICATE_ENTRY = 1007;
     public static final Integer INVALID_ENTRY = 1008;
     public static final Integer EXPIRED_ENTRY = 1010;
+    public static final Integer NOT_FOUND = 1015;
+    public static final Integer BLOCKED_ENTRY = 1020;
 }
