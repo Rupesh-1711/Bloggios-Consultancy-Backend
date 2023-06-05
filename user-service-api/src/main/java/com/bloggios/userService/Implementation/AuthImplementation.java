@@ -107,6 +107,12 @@ public class AuthImplementation implements AuthService {
         return new ApiResponse(ServiceConstants.EMAIL_VERIFIED);
     }
 
+    /**
+     *
+     * Resend OTP to registered user
+     * @param userId
+     * @return
+     */
     @Override
     @Transactional
     public ApiResponse resendOtp(String userId) {
