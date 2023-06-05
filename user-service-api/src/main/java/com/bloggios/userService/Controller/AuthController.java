@@ -88,4 +88,16 @@ public class AuthController {
         ApiResponse apiResponse = authService.resendOtp(userid);
         return ResponseEntity.ok(apiResponse);
     }
+
+    /**
+     *
+     * User Type
+     * @param type
+     * @param userId
+     * @return
+     */
+    @GetMapping("/user-type")
+    public ResponseEntity<ApiResponse> userType(@RequestBody String type, @RequestParam(value = "userid", required = true) String userId){
+        return ResponseEntity.ok(authService.userType(type, userId));
+    }
 }

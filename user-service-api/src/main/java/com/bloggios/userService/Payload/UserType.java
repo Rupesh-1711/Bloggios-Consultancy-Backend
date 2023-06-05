@@ -14,24 +14,16 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Service;
-
-import com.bloggios.userService.Entity.Auth;
-import com.bloggios.userService.Payload.ApiResponse;
-import com.bloggios.userService.Payload.AuthRequest;
-import com.bloggios.userService.Payload.OtpPayload;
+package com.bloggios.userService.Payload;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Service
- * @created_on - April 29-2023
+ * @package - com.bloggios.userService.Payload
+ * @created_on - June 05-2023
  */
 
-public interface AuthService {
-
-    ApiResponse registerUser(AuthRequest authRequest);
-    ApiResponse verifyOtp(OtpPayload otpPayload);
-    ApiResponse resendOtp(String userId);
-    ApiResponse userType(String learnerType, String userId);
+public enum UserType {
+    INSTRUCTOR,
+    LEARNER,
 }

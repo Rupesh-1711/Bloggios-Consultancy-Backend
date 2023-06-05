@@ -24,10 +24,7 @@ import com.bloggios.userService.Constants.ServiceConstants;
 import com.bloggios.userService.Entity.Auth;
 import com.bloggios.userService.Entity.RegistrationOtp;
 import com.bloggios.userService.Exception.UserServiceException;
-import com.bloggios.userService.Payload.ApiResponse;
-import com.bloggios.userService.Payload.AuthProvider;
-import com.bloggios.userService.Payload.AuthRequest;
-import com.bloggios.userService.Payload.OtpPayload;
+import com.bloggios.userService.Payload.*;
 import com.bloggios.userService.Repository.AuthRepository;
 import com.bloggios.userService.Repository.RegistrationOtpRepository;
 import com.bloggios.userService.Service.AuthService;
@@ -129,5 +126,21 @@ public class AuthImplementation implements AuthService {
                 .builder()
                 .message("OTP sent successfully to your registered mail address")
                 .build();
+    }
+
+    /**
+     *
+     * User Type
+     * @param learnerType
+     * @param userId
+     * @return
+     */
+    @Override
+    public ApiResponse userType(String learnerType, String userId) {
+        Auth auth = authRepository.findById(userId)
+                .orElseThrow(() -> new UserServiceException(ServiceConstants.USER_NOT_EXISTS, ErrorCodes.NOT_FOUND, HttpStatus.NOT_FOUND));
+        auth.setUserType(UserType.valueOf(learnerType));
+        authRepository.save(auth);
+        return ApiResponse.builder().message(ServiceConstants.SAVED_SUCCESSFULLY).build();
     }
 }

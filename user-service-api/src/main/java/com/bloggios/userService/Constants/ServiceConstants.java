@@ -30,4 +30,5 @@ public class ServiceConstants {
     public static final String USER_NOT_EXISTS = "User not found with given id";
     public static final String OTP_NOT_FOUND = "OTP not found for given user";
     public static final String EMAIL_ALREADY_VERIFIED = "Email is already verified";
+    public static final String SAVED_SUCCESSFULLY = "Saved Successfully";
 }

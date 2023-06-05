@@ -17,6 +17,7 @@
 package com.bloggios.userService.Entity;
 
 import com.bloggios.userService.Payload.AuthProvider;
+import com.bloggios.userService.Payload.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -55,6 +56,9 @@ public class Auth {
     private Date dateRegistered;
     private Boolean emailVerified;
     private Boolean isEnabled;
+
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
     @OneToMany(mappedBy = "auth", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RegistrationOtp> otps;
