@@ -1,0 +1,8 @@
+learner:
+  database:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/bg-learner
+    username: postgres
+    password: root
+    ddl-auto: update
+    show-sql: true

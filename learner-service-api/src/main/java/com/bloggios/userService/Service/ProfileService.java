@@ -16,6 +16,9 @@
 
 package com.bloggios.userService.Service;
 
+import com.bloggios.userService.Payload.LearnerResponse;
+import com.bloggios.userService.Payload.ProfileRequest;
+
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
@@ -24,4 +27,5 @@ package com.bloggios.userService.Service;
  */
 
 public interface ProfileService {
+    LearnerResponse addData(ProfileRequest profileRequest);
 }

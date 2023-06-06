@@ -1,0 +1,5 @@
+bloggios:
+  discovery:
+    server:
+      name: discovery-server
+      port: 8761
