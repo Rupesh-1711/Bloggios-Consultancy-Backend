@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ${bloggios.discovery.server.name}
+  profiles:
+    active: development
+server:
+  port: ${bloggios.discovery.server.port}
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka

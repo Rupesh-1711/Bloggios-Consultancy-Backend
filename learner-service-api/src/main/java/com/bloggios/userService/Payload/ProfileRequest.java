@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Repository;
-
-import com.bloggios.userService.Entity.LearnerProfile;
-import org.springframework.data.jpa.repository.JpaRepository;
+package com.bloggios.userService.Payload;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Repository
- * @created_on - June 04-2023
+ * @package - com.bloggios.userService.Payload
+ * @created_on - June 07-2023
  */
 
-public interface ProfileRepository extends JpaRepository<LearnerProfile, String> {
+public class ProfileRequest {
+    private String name;
+    private String about;
 }

@@ -1,0 +1,16 @@
+server:
+  port: 7040
+
+spring:
+  datasource:
+    driver-class-name: ${learner.database.driverClassName}
+    url: ${learner.database.url}
+    username: ${learner.database.username}
+    password: ${learner.database.password}
+  jpa:
+    hibernate:
+      ddl-auto: ${learner.database.ddl-auto}
+    show-sql: ${learner.database.show-sql}
+  profiles:
+    active:
+      - development
