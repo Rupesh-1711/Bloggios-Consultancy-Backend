@@ -18,10 +18,13 @@ package com.bloggios.userService.Entity;
 
 import com.bloggios.userService.Payload.Gender;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -35,11 +38,14 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class LearnerProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    private String learnerProfileId;
+
     @Column(nullable = false)
     private String name;
 
@@ -54,14 +60,4 @@ public class LearnerProfile {
     private Date dateGenerated;
     private LocalDate dob;
     private String tag;
-
-    public LearnerProfile(String name, Gender gender, String about, String imageUrl, Date dateGenerated, LocalDate dob, String tag) {
-        this.name = name;
-        this.gender = gender;
-        this.about = about;
-        this.imageUrl = imageUrl;
-        this.dateGenerated = new Date(System.currentTimeMillis());
-        this.dob = dob;
-        this.tag = tag;
-    }
 }

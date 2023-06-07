@@ -14,30 +14,24 @@
  * limitations under the License.
  */
 
-package com.bloggios.userService.Payload;
+package com.bloggios.userService.Configuration;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
- * @package - com.bloggios.userService.Payload
+ * @package - com.bloggios.userService.Configuration
  * @created_on - June 07-2023
  */
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class LearnerResponse {
-    private String message;
+@Component
+public class ModelMapperConfiguration {
 
-    @JsonIgnore
-    private String id;
-    private Boolean isCreated;
-    private Boolean isUpdate;
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
 }

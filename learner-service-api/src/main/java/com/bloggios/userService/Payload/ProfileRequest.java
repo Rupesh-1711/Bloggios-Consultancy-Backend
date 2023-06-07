@@ -16,6 +16,11 @@
 
 package com.bloggios.userService.Payload;
 
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+
 /**
  * @author - rohit
  * @project - Bloggios-Learning-Platform-Backend
@@ -23,7 +28,15 @@ package com.bloggios.userService.Payload;
  * @created_on - June 07-2023
  */
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProfileRequest {
     private String name;
     private String about;
+    private Gender gender;
+    private LocalDate dob;
+    private String tag;
 }
