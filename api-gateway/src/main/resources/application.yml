@@ -6,6 +6,26 @@ spring:
     name: ${gateway.name}
   profiles:
     active: development
+## Spring Cloud Gateway Routes Configuration ##
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service-api
+          uri: lb://user-service-api
+          predicates:
+            - Path=/user-service/**
+          filters:
+            - AddRequestHeader=X-bloggios-gateway, gateway-approved-header-given
+        - id: learner-service-api
+          uri: lb://learner-service-api
+          predicates:
+            - Path=/learner-service/**
+          filters:
+            - AddRequestHeader=X-bloggios-gateway, gateway-approved-header-given
+
 eureka:
   instance:
     hostname: localhost

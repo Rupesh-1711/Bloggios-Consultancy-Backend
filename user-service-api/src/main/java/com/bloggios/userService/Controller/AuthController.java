@@ -20,6 +20,7 @@ import com.bloggios.userService.Payload.ApiResponse;
 import com.bloggios.userService.Payload.AuthRequest;
 import com.bloggios.userService.Payload.OtpPayload;
 import com.bloggios.userService.Service.AuthService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,7 @@ import java.net.URI;
  */
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/user-service")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -52,8 +53,8 @@ public class AuthController {
      * @return
      */
     @PostMapping(value = "/register")
-    public ResponseEntity<ApiResponse> registerUser(@RequestBody AuthRequest authRequest){
-        logger.info("Entry");
+    public ResponseEntity<ApiResponse> registerUser(@RequestBody AuthRequest authRequest, HttpServletRequest request){
+        logger.warn("Headers : " + request.getHeader("X-bloggios-gateway"));
         ApiResponse apiResponse = authService.registerUser(authRequest);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentContextPath()

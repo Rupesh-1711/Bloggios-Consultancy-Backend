@@ -39,7 +39,7 @@ import java.net.URI;
  */
 
 @RestController
-@RequestMapping("/learner")
+@RequestMapping("/learner-service")
 @Slf4j
 public class ProfileController {
     
