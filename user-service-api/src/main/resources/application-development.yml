@@ -1,7 +1,7 @@
 bloggios:
   port: 7000
   userService:
-    name: UserService-development
+    name: user-service-api
   datasource:
     url: jdbc:mysql://localhost:3306/bloggios_learn
     username: ${DatabaseUser}

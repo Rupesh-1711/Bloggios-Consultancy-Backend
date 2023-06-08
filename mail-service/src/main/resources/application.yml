@@ -2,7 +2,7 @@ server:
   port: 7007
 spring:
   application:
-    name: Mail-Service
+    name: mail-service-api
   mail:
     username: ${mail.username}
     password: ${mail.password}
@@ -29,3 +29,9 @@ spring:
 application:
   version: @version@
   title: Email Service
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

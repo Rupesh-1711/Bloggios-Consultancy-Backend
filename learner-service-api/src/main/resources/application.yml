@@ -2,6 +2,8 @@ server:
   port: 7040
 
 spring:
+  application:
+    name: ${learner.name}
   datasource:
     driver-class-name: ${learner.database.driverClassName}
     url: ${learner.database.url}
@@ -14,3 +16,9 @@ spring:
   profiles:
     active:
       - development
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
