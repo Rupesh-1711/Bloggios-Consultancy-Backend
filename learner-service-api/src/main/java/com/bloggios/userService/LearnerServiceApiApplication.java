@@ -18,6 +18,7 @@ package com.bloggios.userService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author - rohit
@@ -27,6 +28,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class LearnerServiceApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(LearnerServiceApiApplication.class, args);

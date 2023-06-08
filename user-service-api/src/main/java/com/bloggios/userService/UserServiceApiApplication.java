@@ -18,6 +18,7 @@ package com.bloggios.userService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import java.util.Arrays;
 
@@ -29,6 +30,7 @@ import java.util.Arrays;
  */
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class UserServiceApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserServiceApiApplication.class, args);
