@@ -6,7 +6,7 @@ spring:
     name: ${gateway.name}
   profiles:
     active: development
-## Spring Cloud Gateway Routes Configuration ##
+  ## Spring Cloud Gateway Routes Configuration ##
   cloud:
     gateway:
       discovery:
